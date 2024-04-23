@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/Plantilla/fragmentos :: head">
+<meta charset="UTF-8">
+<title>Empleados</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+	<header th:replace="/Plantilla/fragmentos :: header"> </header>
+
+	<div class="container">
+		<div class="card">
+			<div class="card-header display-4 text-center" th:text="${titulo}"></div>
+
+			<div class="card-body">
+
+				<form th:action="@{/views/empleados/save}"
+					th:object="${empleadoNuevo}" method="post">
+					<div class="form-group">
+						<input type="hidden" th:field="*{id}" id="id"> <label
+							for="nombre" class="form-label">Nombre</label> <input type="text"
+							th:field="*{nombre}" class="form-control form-control-sm"
+							id="nombre"> <small class="form-text text-danger"
+							th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+					</div>
+
+					<div class="form-group">
+						<label for="apellido" class="form-label">Apellido</label> <input
+							type="text" th:field="*{apellido}"
+							class="form-control form-control-sm" id="apellido"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
+					</div>
+
+					<div class="form-group">
+						<label for="salario" class="form-label">Salario</label> <input
+							type="text" th:field="*{salario}"
+							class="form-control form-control-sm" id="salario"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('nombre')}" th:errors="*{salario}"></small>
+					</div>
+
+
+					<div class="form-group">
+						<label for="departamento" class="form-label">Departamento</label>
+						<select th:field="*{departamento}"
+							class="form-control form-control-sm" id="departamento">
+							<option th:each="dp:${departamentosListado}" th:value="${dp.id}"
+								th:text="${dp.departamentoNombre}"></option>
+						</select>
+					</div>
+
+
+					<div class="card-footer">
+						<input type="submit" class="btn btn-primary btn-sm"
+							value="guardar"></input>
+
+					</div>
+
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<footer th:replace="/Plantilla/fragmentos :: footer"></footer>
+
+</body>
+
+</html>

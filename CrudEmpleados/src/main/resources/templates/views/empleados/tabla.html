@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/Plantilla/fragmentos :: head">
+<meta charset="UTF-8">
+<title>Empleados</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<body>
+	<header th:replace="/Plantilla/fragmentos :: header"> </header>
+	<div class="container">
+		<h1 class="display-4 text-center" th:text="${titulo}"></h1>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Apellido</th>
+					<th scope="col">Salario</th>
+					<th scope="col">Departamento</th>
+					<th scope="col">Editar</th>
+					<th scope="col">Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="tr:${listaTrabajadores}">
+					<th scope="row" th:text="${tr.id}"></th>
+					<td th:text="${tr.nombre}"></td>
+					<td th:text="${tr.apellido}"></td>
+					<td th:text="${tr.salario}"></td>
+					<td th:text="${tr.departamento.departamentoNombre}"></td>
+					<td><a class="btn btn-success"
+						th:href="@{/views/empleados/edit/} + ${tr.id}" th:text="'Editar'"
+						title="Editar registro"></a></td>
+					<td><a class="btn btn-danger"
+						th:href="@{/views/empleados/delete/} + ${tr.id}"
+						th:text="'Eliminar'" title="Eliminar registro"
+						onclick="return confirm('Seguro que quiere eliminar registro?');"></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+	<footer th:replace="/Plantilla/fragmentos :: footer"></footer>
+
+</body>
+
+</html>
