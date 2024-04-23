@@ -2,9 +2,7 @@
 
 ## Descripción del proyecto
 El proyecto consiste en una web service CRUD creada en java usando spring boot y Maven.
-
 	El programa opera sobre una base de datos creada en mySQL.
-
 	El programa fue hecho como practica para realizar un sencillo CRUD.
 
 ## Como configurar base de datos?
